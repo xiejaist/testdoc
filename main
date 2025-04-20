@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户调查问卷</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .survey-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 10px;
+        }
+        
+        .rating-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .rating-option {
+            text-align: center;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #27ae60;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        .required:after {
+            content: " *";
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <h1>用户体验调查</h1>
+        
+        <form id="surveyForm">
+            <div class="form-group">
+                <label for="name" class="required">您的姓名</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="required">您的电子邮箱</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="age">您的年龄段</label>
+                <select id="age" name="age">
+                    <option value="">请选择</option>
+                    <option value="18以下">18岁以下</option>
+                    <option value="18-24">18-24岁</option>
+                    <option value="25-34">25-34岁</option>
+                    <option value="35-44">35-44岁</option>
+                    <option value="45-54">45-54岁</option>
+                    <option value="55以上">55岁以上</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">您使用我们的产品多久了？</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="usage1" name="usage" value="不到1个月" required>
+                        <label for="usage1">不到1个月</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="usage2" name="usage" value="1-6个月">
+                        <label for="usage2">1-6个月</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="usage3" name="usage" value="6-12个月">
+                        <label for="usage3">6-12个月</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="usage4" name="usage" value="1年以上">
+                        <label for="usage4">1年以上</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">请评价我们产品的易用性（1=非常困难, 5=非常容易）</label>
+                <div class="rating-group">
+                    <div class="rating-option">
+                        <input type="radio" id="usability1" name="usability" value="1" required>
+                        <label for="usability1">1</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="usability2" name="usability" value="2">
+                        <label for="usability2">2</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="usability3" name="usability" value="3">
+                        <label for="usability3">3</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="usability4" name="usability" value="4">
+                        <label for="usability4">4</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="usability5" name="usability" value="5">
+                        <label for="usability5">5</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">您最喜欢我们产品的哪些功能？</label>
+                <textarea id="likes" name="likes" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">您认为我们的产品可以如何改进？</label>
+                <textarea id="improvements" name="improvements" required></textarea>
+            </div>
+            
+            <button type="submit">提交调查</button>
+        </form>
+        
+        <div id="successMessage" class="success-message">
+            感谢您的反馈！您的回答已成功提交。
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // 收集表单数据
+  var formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    // 添加其他表单字段
+  };
+  
+  // 发送到Google Apps Script
+  fetch('https://script.google.com/macros/s/AKfycbycXir2HCn6d9uCTyyfeBtydG1zAEwiwT3loyQT1RzUNDCbyUgAxjj6pVjq4lrMdjzf/exec', {
+    method: 'POST',
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.success) {
+      alert('问卷已成功提交！');
+    } else {
+      alert('提交失败：' + data.error);
+    }
+  })
+  .catch(error => {
+    alert('发生错误：' + error);
+  });
+});
+    </script>
+</body>
+</html>
